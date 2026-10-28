@@ -1,0 +1,21 @@
+{
+    "name": "synthetic-person-email-not-found",
+    "description": "An email lookup that finds nothing: 200 not_found with a zero receipt. Synthetic, shaped on Fuse's published Business API contract (2026-10-29).",
+    "calls": [
+        {
+            "req": {
+                "method": "POST",
+                "url": "{{request.url}}"
+            },
+            "res": {
+                "status": 200,
+                "body": {
+                    "status": "not_found",
+                    "email": null,
+                    "linkedinUrl": null,
+                    "creditsCharged": 0
+                }
+            }
+        }
+    ]
+}

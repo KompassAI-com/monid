@@ -1,0 +1,38 @@
+{
+    "name": "synthetic-prospects-filter-options",
+    "description": "One people filter's vocabulary, `?field=job_title_levels`, trimmed to three values. Synthetic, shaped on Fuse's published Business API contract (2026-10-29).",
+    "calls": [
+        {
+            "req": {
+                "method": "GET",
+                "url": "{{request.url}}?field=job_title_levels"
+            },
+            "res": {
+                "status": 200,
+                "body": {
+                    "filterOptions": {
+                        "fields": {
+                            "job_title_levels": {
+                                "valueShape": "include_exclude",
+                                "values": [
+                                    {
+                                        "label": "CXO",
+                                        "value": "cxo"
+                                    },
+                                    {
+                                        "label": "Director",
+                                        "value": "director"
+                                    },
+                                    {
+                                        "label": "VP",
+                                        "value": "vp"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

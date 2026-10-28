@@ -1,0 +1,20 @@
+{
+    "name": "synthetic-companies-resolve-not-found",
+    "description": "A name nothing matches: 200 not_found with a null company, never a guess. Synthetic, shaped on Fuse's published Business API contract (2026-10-29).",
+    "calls": [
+        {
+            "req": {
+                "method": "POST",
+                "url": "{{request.url}}"
+            },
+            "res": {
+                "status": 200,
+                "body": {
+                    "status": "not_found",
+                    "company": null,
+                    "creditsCharged": 0
+                }
+            }
+        }
+    ]
+}

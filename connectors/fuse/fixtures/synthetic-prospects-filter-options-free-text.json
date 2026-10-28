@@ -1,0 +1,26 @@
+{
+    "name": "synthetic-prospects-filter-options-free-text",
+    "description": "A free-text people filter, `?field=job_title`: no vocabulary, and an `autocomplete` pointer to a route this catalog does not carry, which the endpoint drops. Synthetic, shaped on Fuse's published Business API contract (2026-10-29).",
+    "calls": [
+        {
+            "req": {
+                "method": "GET",
+                "url": "{{request.url}}?field=job_title"
+            },
+            "res": {
+                "status": 200,
+                "body": {
+                    "filterOptions": {
+                        "fields": {
+                            "job_title": {
+                                "valueShape": "term",
+                                "values": [],
+                                "autocomplete": "/prospects/autocomplete?field=title"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

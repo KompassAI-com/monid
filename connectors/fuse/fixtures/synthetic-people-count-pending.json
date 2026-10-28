@@ -1,0 +1,112 @@
+{
+    "name": "synthetic-people-count-pending",
+    "description": "A new query count: 202 pending with the filters being counted and the query's own echoes, one more 202, then 200 ready. The repeats send the returned filters, and their answers carry no echoes. Synthetic, shaped on Fuse's published Business API contract (2026-10-29).",
+    "calls": [
+        {
+            "req": {
+                "method": "POST",
+                "url": "{{request.url}}"
+            },
+            "res": {
+                "status": 202,
+                "body": {
+                    "status": "pending",
+                    "total": null,
+                    "filters": {
+                        "job_title_levels": [
+                            {
+                                "status": "include",
+                                "value": "vp"
+                            }
+                        ],
+                        "job_title_role": [
+                            {
+                                "status": "include",
+                                "value": "sales"
+                            }
+                        ],
+                        "location_country": [
+                            {
+                                "status": "include",
+                                "value": "united states"
+                            }
+                        ]
+                    },
+                    "unresolvedCriteria": [
+                        "who joined in the last year"
+                    ],
+                    "closestCompanyMatches": [],
+                    "creditsCharged": 0
+                }
+            }
+        },
+        {
+            "req": {
+                "method": "POST",
+                "url": "{{request.url}}"
+            },
+            "res": {
+                "status": 202,
+                "body": {
+                    "status": "pending",
+                    "total": null,
+                    "filters": {
+                        "job_title_levels": [
+                            {
+                                "status": "include",
+                                "value": "vp"
+                            }
+                        ],
+                        "job_title_role": [
+                            {
+                                "status": "include",
+                                "value": "sales"
+                            }
+                        ],
+                        "location_country": [
+                            {
+                                "status": "include",
+                                "value": "united states"
+                            }
+                        ]
+                    },
+                    "creditsCharged": 0
+                }
+            }
+        },
+        {
+            "req": {
+                "method": "POST",
+                "url": "{{request.url}}"
+            },
+            "res": {
+                "status": 200,
+                "body": {
+                    "status": "ready",
+                    "total": 18432,
+                    "filters": {
+                        "job_title_levels": [
+                            {
+                                "status": "include",
+                                "value": "vp"
+                            }
+                        ],
+                        "job_title_role": [
+                            {
+                                "status": "include",
+                                "value": "sales"
+                            }
+                        ],
+                        "location_country": [
+                            {
+                                "status": "include",
+                                "value": "united states"
+                            }
+                        ]
+                    },
+                    "creditsCharged": 0
+                }
+            }
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 {
     "name": "companies-search",
-    "description": "A two-row company search page from a sentence, with the next page's cursor and the total. Nested lists keep one entry and long text is cut to keep the file small; the cursor is a placeholder. Recorded from Fuse's production API on 2026-10-30, trimmed and scrubbed by the recorder.",
+    "description": "A two-row company search page from a sentence, with the next page's cursor and the total. Nested lists keep one entry and long text is cut to keep the file small; investors who are people are replaced with the placeholder personas, and the cursor is a placeholder. Recorded from Fuse's production API on 2026-10-30, trimmed and scrubbed by the recorder.",
     "calls": [
         {
             "req": {
@@ -195,8 +195,8 @@
                                 {
                                     "logo_url": null,
                                     "entity_type": "person",
-                                    "investor_name": "Leland Hart",
-                                    "linkedin_slug": "leland-hart-43265"
+                                    "investor_name": "Ada Fielding",
+                                    "linkedin_slug": "ada-fielding"
                                 }
                             ],
                             "acquisitions": null,
@@ -493,7 +493,7 @@
                                 {
                                     "logo_url": null,
                                     "entity_type": "person",
-                                    "investor_name": "Jay Levine",
+                                    "investor_name": "Rafael Ortiz",
                                     "linkedin_slug": null
                                 }
                             ],

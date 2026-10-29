@@ -23,9 +23,10 @@ const run = async (fixture: string, body: Json) =>
     });
 
 Deno.test("fuse#companies/search: a page bills the rows it returned, without `isSaved`", async () => {
+    // A short page: the default size is asked and two rows come back, so only
+    // the rows returned may be billed.
     const result = await run("companies-search.json", {
         query: QUERY,
-        size: 2,
     });
     assertEquals(result.httpStatus, 200);
     assertEquals(result.isProviderError, false);

@@ -131,7 +131,7 @@ Deno.test("fuse#data/people/enrich-jobs: the gate rejects an unknown kind and 10
 
 Deno.test({
     name:
-        "fuse#data/people/enrich-jobs live: a one-person job finishes with one row",
+        "fuse#data/people/enrich-jobs live: a one-person job finishes with at most one row",
     ignore: liveSkip("fuse"),
     fn: async () => {
         const result = await runEndpoint({
@@ -156,6 +156,9 @@ Deno.test({
         assert(
             ["completed", "stopped", "failed"].includes(String(output.status)),
         );
-        assertEquals((output.rows as unknown[]).length, 1);
+        // A job that stops or fails before reaching the person ends with no
+        // row; `processed` is Fuse's count of the rows it answers.
+        assert(Array.isArray(output.rows) && output.rows.length <= 1);
+        assertEquals(output.rows.length, output.processed);
     },
 });

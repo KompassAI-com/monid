@@ -13,12 +13,12 @@ import { defineProvider } from "@shared/core";
  *
  * TWO SHAPES live behind the one host:
  *
- *   - SYNC — search, filter values, the company count and resolver, the
- *     email and phone lookups, email verification. One request, one answer.
- *   - ASYNC — the people count and the bulk lookup job. A new people count
- *     answers `202 pending` with the filters it is counting, and the same
- *     request with those filters answers `200 ready` once counted. The bulk
- *     job answers `202` with a `jobId` and is read back from
+ *   - SYNC — search, filter values, the company resolver, the email and
+ *     phone lookups, email verification. One request, one answer.
+ *   - ASYNC — the people and company counts and the bulk lookup job. A new
+ *     count answers `202 pending` with the filters it is counting, and the
+ *     same request with those filters answers `200 ready` once counted. The
+ *     bulk job answers `202` with a `jobId` and is read back from
  *     `GET /data/people/enrich-jobs/{jobId}` until it finishes. That read is
  *     not a catalog endpoint: the engine drives every poll inside the run.
  *

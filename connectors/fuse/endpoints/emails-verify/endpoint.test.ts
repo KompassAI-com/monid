@@ -92,9 +92,12 @@ Deno.test({
         "fuse#data/emails/verify live: a check answers one of the four verdicts",
     ignore: liveSkip("fuse"),
     fn: async () => {
+        // Fuse refuses an address under a top-level domain that does not
+        // exist (`.example` answers 422 VALIDATION_FAILED), so the live check
+        // sends RFC 2606's documentation domain, which sits under `.com`.
         const result = await runEndpoint({
             unit: await testSealedUnit(ID),
-            input: { body: { email: "nobody@northwind-payments.example" } },
+            input: { body: { email: "nobody@example.com" } },
             mode: "live",
         });
         assertEquals(

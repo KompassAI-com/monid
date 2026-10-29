@@ -18,7 +18,7 @@ const FILTERS = {
     employeeCountV2: { min: 50, max: 200 },
 };
 const QUERY = "Series B fintech companies in New York with 50 to 200 employees";
-/** The filters Fuse built from QUERY when the chains were recorded (2026-10-30). */
+/** The filters Fuse built from QUERY when the chains were recorded (2026-10-29). */
 const RECORDED_FILTERS = {
     crunchbaseCategories: [
         { status: "include", value: "FinTech", label: "FinTech" },

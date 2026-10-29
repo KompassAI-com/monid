@@ -17,7 +17,7 @@ const FILTERS = {
     location_country: [{ status: "include", value: "united states" }],
 };
 const QUERY = "VPs of sales in the United States who joined in the last year";
-/** The filters Fuse built from QUERY when the chains were recorded (2026-10-30). */
+/** The filters Fuse built from QUERY when the chains were recorded (2026-10-29). */
 const RECORDED_FILTERS = {
     keywords: ["vice president of sales", "vp of sales", "vp sales"],
     job_title_role: [{ status: "include", value: "sales" }],

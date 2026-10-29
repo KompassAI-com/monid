@@ -1,6 +1,6 @@
 {
     "name": "email-verify-invalid",
-    "description": "A charged verdict: `invalid` for an address no mailbox answers, with its 1-credit receipt. Recorded from Fuse's production API on 2026-10-30, trimmed and scrubbed by the recorder.",
+    "description": "A charged verdict: `invalid` for an address no mailbox answers, with its 1-credit receipt. Recorded from Fuse's production API on 2026-10-29, trimmed and scrubbed by the recorder.",
     "calls": [
         {
             "req": {

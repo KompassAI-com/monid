@@ -1,6 +1,6 @@
 {
     "name": "companies-count-pending",
-    "description": "A new company count from a sentence: 202 pending with the filters counted, then 200 ready on the repeat. Recorded from Fuse's production API on 2026-10-30, trimmed and scrubbed by the recorder.",
+    "description": "A new company count from a sentence: 202 pending with the filters counted, then 200 ready on the repeat. Recorded from Fuse's production API on 2026-10-29, trimmed and scrubbed by the recorder.",
     "calls": [
         {
             "req": {

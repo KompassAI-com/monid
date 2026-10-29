@@ -1,6 +1,6 @@
 {
     "name": "companies-filter-options",
-    "description": "One company filter (`investors`): no values, and the `autocomplete` pointer the connector drops. Recorded from Fuse's production API on 2026-10-30, trimmed and scrubbed by the recorder.",
+    "description": "One company filter (`investors`): no values, and the `autocomplete` pointer the connector drops. Recorded from Fuse's production API on 2026-10-29, trimmed and scrubbed by the recorder.",
     "calls": [
         {
             "req": {

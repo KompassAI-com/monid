@@ -1,6 +1,6 @@
 {
     "name": "prospects-filter-options-free-text",
-    "description": "A free-text people filter (`job_title`): no values, and the `autocomplete` pointer the connector drops. Recorded from Fuse's production API on 2026-10-30, trimmed and scrubbed by the recorder.",
+    "description": "A free-text people filter (`job_title`): no values, and the `autocomplete` pointer the connector drops. Recorded from Fuse's production API on 2026-10-29, trimmed and scrubbed by the recorder.",
     "calls": [
         {
             "req": {

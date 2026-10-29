@@ -1,6 +1,6 @@
 {
     "name": "people-count-ready",
-    "description": "A people count Fuse already holds: 200 ready on the first call, the final answer of the recorded count's repeats (the same search as people-count-pending). Recorded from Fuse's production API on 2026-10-30, trimmed and scrubbed by the recorder.",
+    "description": "A people count Fuse already holds: 200 ready on the first call, the final answer of the recorded count's repeats (the same search as people-count-pending). Recorded from Fuse's production API on 2026-10-29, trimmed and scrubbed by the recorder.",
     "calls": [
         {
             "req": {

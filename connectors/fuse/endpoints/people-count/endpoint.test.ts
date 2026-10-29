@@ -19,7 +19,7 @@ const FILTERS = {
 const QUERY = "VPs of sales in the United States who joined in the last year";
 /** The filters Fuse built from QUERY when the chains were recorded (2026-10-30). */
 const RECORDED_FILTERS = {
-    keywords: ["vice president of sales", "vp of sales"],
+    keywords: ["vice president of sales", "vp of sales", "vp sales"],
     job_title_role: [{ status: "include", value: "sales" }],
     location_country: [{ status: "include", value: "united states" }],
     job_start_date: 12,
@@ -42,7 +42,7 @@ Deno.test("fuse#data/people/count: a count Fuse already holds answers on the fir
     assertEquals(result.usage, { credits: {}, evidence: {} });
     assertEquals(result.output, {
         status: "ready",
-        total: 8983,
+        total: 11090,
         filters: RECORDED_FILTERS,
     });
 });

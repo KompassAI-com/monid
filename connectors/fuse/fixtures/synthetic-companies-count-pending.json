@@ -1,0 +1,108 @@
+{
+    "name": "synthetic-companies-count-pending",
+    "description": "A new query company count: 202 pending with the filters being counted and the query's unresolved criteria, one more 202, then 200 ready. The repeats send the returned filters, and their answers carry no echoes. Synthetic, shaped on Fuse's published Business API contract (2026-10-29).",
+    "calls": [
+        {
+            "req": {
+                "method": "POST",
+                "url": "{{request.url}}"
+            },
+            "res": {
+                "status": 202,
+                "body": {
+                    "status": "pending",
+                    "total": null,
+                    "filters": {
+                        "crunchbaseCategoryGroups": [
+                            "Financial Services"
+                        ],
+                        "stage": [
+                            {
+                                "label": "Series B",
+                                "value": "series_b",
+                                "status": "include"
+                            }
+                        ],
+                        "headquartersCity": [
+                            "New York, New York, United States"
+                        ],
+                        "employeeCountV2": {
+                            "min": 50,
+                            "max": 200
+                        }
+                    },
+                    "unresolvedCriteria": [
+                        "that sell to banks"
+                    ],
+                    "creditsCharged": 0
+                }
+            }
+        },
+        {
+            "req": {
+                "method": "POST",
+                "url": "{{request.url}}"
+            },
+            "res": {
+                "status": 202,
+                "body": {
+                    "status": "pending",
+                    "total": null,
+                    "filters": {
+                        "crunchbaseCategoryGroups": [
+                            "Financial Services"
+                        ],
+                        "stage": [
+                            {
+                                "label": "Series B",
+                                "value": "series_b",
+                                "status": "include"
+                            }
+                        ],
+                        "headquartersCity": [
+                            "New York, New York, United States"
+                        ],
+                        "employeeCountV2": {
+                            "min": 50,
+                            "max": 200
+                        }
+                    },
+                    "creditsCharged": 0
+                }
+            }
+        },
+        {
+            "req": {
+                "method": "POST",
+                "url": "{{request.url}}"
+            },
+            "res": {
+                "status": 200,
+                "body": {
+                    "status": "ready",
+                    "total": 1287,
+                    "filters": {
+                        "crunchbaseCategoryGroups": [
+                            "Financial Services"
+                        ],
+                        "stage": [
+                            {
+                                "label": "Series B",
+                                "value": "series_b",
+                                "status": "include"
+                            }
+                        ],
+                        "headquartersCity": [
+                            "New York, New York, United States"
+                        ],
+                        "employeeCountV2": {
+                            "min": 50,
+                            "max": 200
+                        }
+                    },
+                    "creditsCharged": 0
+                }
+            }
+        }
+    ]
+}

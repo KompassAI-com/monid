@@ -178,3 +178,28 @@ Deno.test("fuse#data/people/count: a query count is repeated with the filters Fu
     assertEquals(repeat.url, first.url);
     assertEquals(repeat.body, { filters: counted });
 });
+
+Deno.test("fuse#data/companies/count: a query count is repeated with the filters Fuse returned, never the query", async () => {
+    const counted = {
+        crunchbaseCategoryGroups: ["Financial Services"],
+        headquartersCity: ["New York, New York, United States"],
+    };
+    const pending = {
+        status: "pending",
+        total: null,
+        filters: counted,
+        creditsCharged: 0,
+    };
+    const [first, repeat] = await wire(
+        "fuse#data/companies/count",
+        { body: { query: "fintech companies in New York" } },
+        [
+            { status: 202, body: { ...pending, unresolvedCriteria: [] } },
+            { status: 200, body: { ...pending, status: "ready", total: 42 } },
+        ],
+    );
+    assertEquals(first.body, { query: "fintech companies in New York" });
+    assertEquals(repeat.method, "POST");
+    assertEquals(repeat.url, first.url);
+    assertEquals(repeat.body, { filters: counted });
+});

@@ -9,7 +9,7 @@ The fuse provider SHALL declare name `fuse`, `request.baseUrl`
 `default` ("Fuse credits"). It SHALL declare a provider-level
 `output.fromError` that digests `{error: {code, message, param}}` into
 `{message, code?, param?, raw}`. It SHALL NOT declare a lifecycle, because
-nine of its endpoints are plain synchronous requests and a provider-level
+eight of its endpoints are plain synchronous requests and a provider-level
 `start` would replace their declarative execution.
 
 #### Scenario: The key travels raw
@@ -58,6 +58,19 @@ run open; any other non-2xx SHALL end it as data.
 #### Scenario: A new query count
 - **WHEN** a `query` count answers `202`, `202`, then `200 ready`
 - **THEN** the output carries the total and the first answer's
+  `unresolvedCriteria`
+
+### Requirement: One run returns a finished company count
+`fuse#data/companies/count` SHALL repeat the request with the `filters` of a
+`202 pending` answer until it answers `200 ready`, and SHALL carry a
+`query` count's `unresolvedCriteria` from the first answer to the final
+output. A repeat answering `429` SHALL hold the run open; any other non-2xx,
+including the `503` of a count that failed, SHALL end it as data.
+
+#### Scenario: A new query company count
+- **WHEN** a `query` count answers `202`, `202`, then `200 ready`
+- **THEN** every repeat sends the first answer's `filters`, never the
+  `query`, and the output carries the total and the first answer's
   `unresolvedCriteria`
 
 ### Requirement: One run returns a finished bulk job

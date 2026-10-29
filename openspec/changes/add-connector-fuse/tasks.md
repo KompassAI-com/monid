@@ -28,7 +28,9 @@
       `autocomplete` pointers dropped
 - [x] 3.3 `data/people/count`: `FREE`, lifecycle repeating with the
       returned filters
-- [x] 3.4 `data/companies/count` and `data/companies/resolve`: `FREE`
+- [x] 3.4 `data/companies/count`: `FREE`, lifecycle repeating with the
+      returned filters, as the people count does; `data/companies/resolve`:
+      `FREE`
 - [x] 3.5 `data/people/email`, `data/people/phone`, `data/emails/verify`:
       receipt-settled `PER_UNIT`
 - [x] 3.6 `data/people/enrich-jobs`: receipt-settled `PER_UNIT`, lifecycle
@@ -36,7 +38,7 @@
 
 ## 4. Fixtures and tests
 
-- [x] 4.1 25 provider-level chains, `synthetic-` prefixed until recorded
+- [x] 4.1 28 provider-level chains, `synthetic-` prefixed until recorded
 - [x] 4.2 Replay tests per endpoint (happy, provider error, schema gate,
       estimate where billed) and a gated live test per endpoint
 - [x] 4.3 Provider test: the id set, the shared hooks, and the wire (raw

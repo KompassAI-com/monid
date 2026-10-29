@@ -28,10 +28,9 @@ every billed answer.
   `Authorization: Basic af_…` (an inline inject, the opoint posture), one
   credit pool (Fuse credits), a provider-level `output.fromError`, and no
   provider lifecycle.
-  - 9 sync: people search, company search, the two filter-value reads, the
-    company count, the company resolver, the email and phone lookups, email
-    verification.
-  - 2 async, each with its own lifecycle. The people count answers
+  - 8 sync: people search, company search, the two filter-value reads, the
+    company resolver, the email and phone lookups, email verification.
+  - 3 async, each with its own lifecycle. Each count answers
     `202 pending` with the filters it is counting, and the same request
     with those filters answers `200 ready`. The bulk job answers `202` with
     a `jobId` and is read back until `completed`, `stopped` or `failed`.
@@ -53,8 +52,8 @@ every billed answer.
   The bulk job's ceiling is every person found on every kind asked.
 - **Retries converge.** The bulk submit carries
   `X-Idempotency-Key: {runId}:submit`; Fuse binds the key to the body and
-  answers a repeat with the job it already started. A people-count repeat
-  or a job read answering `429` (and, for the job, `408` or any `5xx`)
+  answers a repeat with the job it already started. A count repeat or a
+  job read answering `429` (and, for the job, `408` or any `5xx`)
   holds the run open on `Retry-After`, because the work keeps running on
   Fuse's side.
 - **Inputs mirror the published OpenAPI**, strict like the API. The people
@@ -69,8 +68,8 @@ every billed answer.
   a broker that workspace is shared by every caller and never describes
   one of them. Filter-value answers lose the `autocomplete` pointers to a
   route this connector does not carry.
-- 25 synthetic fixture chains and 52 replay tests, plus a gated live test
-  per endpoint.
+- 28 synthetic fixture chains and 56 replay and wire tests, plus a gated
+  live test per endpoint.
 
 ## Capabilities
 

@@ -18,6 +18,17 @@ const FILTERS = {
     employeeCountV2: { min: 50, max: 200 },
 };
 const QUERY = "Series B fintech companies in New York with 50 to 200 employees";
+/** The filters Fuse built from QUERY when the chains were recorded (2026-10-30). */
+const RECORDED_FILTERS = {
+    crunchbaseCategories: [
+        { status: "include", value: "FinTech", label: "FinTech" },
+    ],
+    headquartersStateName: [
+        { status: "include", value: "New York", label: "New York" },
+    ],
+    stage: [{ status: "include", value: "series_b", label: "series_b" }],
+    employeeCountV2: { min: 50, max: 200 },
+};
 
 const run = async (fixture: string, body: Json) =>
     runEndpoint({
@@ -28,33 +39,32 @@ const run = async (fixture: string, body: Json) =>
     });
 
 Deno.test("fuse#data/companies/count: a count Fuse already holds answers on the first call, free", async () => {
-    const result = await run("synthetic-companies-count.json", {
-        query: QUERY,
+    const result = await run("companies-count.json", {
+        filters: RECORDED_FILTERS,
     });
     assertEquals(result.httpStatus, 200);
     assertEquals(result.isProviderError, false);
     assertEquals(result.usage, { credits: {}, evidence: {} });
     assertEquals(result.output, {
         status: "ready",
-        total: 1287,
-        filters: FILTERS,
-        unresolvedCriteria: [],
+        total: 45,
+        filters: RECORDED_FILTERS,
     });
 });
 
 Deno.test("fuse#data/companies/count: a new count is repeated with its filters until ready, keeping the query's unresolved criteria", async () => {
-    // Two 202s, then 200: the repeats send the returned `filters`, whose
-    // answers carry no `unresolvedCriteria`; the first answer's survives.
-    const result = await run("synthetic-companies-count-pending.json", {
-        query: `${QUERY} that sell to banks`,
+    // A 202, then 200: the repeat sends the returned `filters`, whose answer
+    // carries no `unresolvedCriteria`; the first answer's survives.
+    const result = await run("companies-count-pending.json", {
+        query: QUERY,
     });
     assertEquals(result.httpStatus, 200);
     assertEquals(result.usage, { credits: {}, evidence: {} });
     assertEquals(result.output, {
         status: "ready",
-        total: 1287,
-        filters: FILTERS,
-        unresolvedCriteria: ["that sell to banks"],
+        total: 45,
+        filters: RECORDED_FILTERS,
+        unresolvedCriteria: [],
     });
 });
 
@@ -90,7 +100,7 @@ Deno.test("fuse#data/companies/count: a refused start is zero-billed data", asyn
 Deno.test("fuse#data/companies/count: the gate rejects no source and an unknown filter, and passes filters", async () => {
     const unit = await testSealedUnit(ID);
     const fixture = await loadFixture(
-        `${chains}synthetic-companies-count.json`,
+        `${chains}companies-count.json`,
     );
     const refused: Json[] = [{}, { filters: { headquarters: ["New York"] } }];
     for (const body of refused) {

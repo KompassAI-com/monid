@@ -23,8 +23,9 @@ const run = async (fixture: string, body: Json) =>
     });
 
 Deno.test("fuse#prospects/search: a page bills the rows it returned, without the workspace fields", async () => {
-    const result = await run("synthetic-prospects-search.json", {
+    const result = await run("prospects-search.json", {
         query: QUERY,
+        size: 2,
     });
     assertEquals(result.httpStatus, 200);
     assertEquals(result.isProviderError, false);
@@ -48,7 +49,7 @@ Deno.test("fuse#prospects/search: a page bills the rows it returned, without the
         }
     }
     assertEquals(profiles[0].linkedin_url, "linkedin.com/in/ada-fielding");
-    assertEquals(output.scrollToken, "st_synthetic_page_2");
+    assertEquals(output.scrollToken, "st_recorded_page_2");
 });
 
 Deno.test("fuse#prospects/search: an unresolved filter value is zero-billed data naming the filter", async () => {
@@ -84,7 +85,7 @@ Deno.test("fuse#prospects/search estimate: the page size, 10 unless asked", asyn
 Deno.test("fuse#prospects/search: the gate rejects a saved search and a bad entry status, and passes the entry", async () => {
     const unit = await testSealedUnit(ID);
     const fixture = await loadFixture(
-        `${chains}synthetic-prospects-search.json`,
+        `${chains}prospects-search.json`,
     );
     const refused: Json[] = [
         { savedSearchName: "VPs of sales" },

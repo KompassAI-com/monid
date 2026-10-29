@@ -68,8 +68,9 @@ every billed answer.
   a broker that workspace is shared by every caller and never describes
   one of them. Filter-value answers lose the `autocomplete` pointers to a
   route this connector does not carry.
-- 28 synthetic fixture chains and 56 replay and wire tests, plus a gated
-  live test per endpoint.
+- 28 fixture chains (13 recorded against Fuse's production API, 15
+  synthetic) and 56 replay and wire tests, plus a gated live test per
+  endpoint.
 
 ## Capabilities
 
@@ -98,5 +99,6 @@ New connector tree. No new `Unit`, preset, hook, category or compiler
 change, and no engine bump. `connectors/ids.lock.json` gains the 11 ids.
 The `/data/` routes answer only for a key carrying a Fuse usage plan, which
 the platform's key does; any other key gets `403 API_NOT_ON_PLAN` on them.
-Fixtures carry the `synthetic-` prefix until they are recorded against that
-key.
+The 13 normal answers are recorded against that key; the 15 fixtures still
+carrying the `synthetic-` prefix are the refusals, failures and found values
+that cannot be produced on demand without a real person's data.

@@ -1,6 +1,6 @@
 {
-    "name": "synthetic-people-count-ready",
-    "description": "A filter count Fuse already holds: 200 ready on the first call, so the run never polls. Synthetic, shaped on Fuse's published Business API contract (2026-10-29).",
+    "name": "people-count-ready",
+    "description": "A people count Fuse already holds: 200 ready on the first call (the recorded repeat's final answer). Recorded from Fuse's production API on 2026-10-30, trimmed and scrubbed by the recorder.",
     "calls": [
         {
             "req": {
@@ -11,13 +11,11 @@
                 "status": 200,
                 "body": {
                     "status": "ready",
-                    "total": 18432,
+                    "total": 8983,
                     "filters": {
-                        "job_title_levels": [
-                            {
-                                "status": "include",
-                                "value": "vp"
-                            }
+                        "keywords": [
+                            "vice president of sales",
+                            "vp of sales"
                         ],
                         "job_title_role": [
                             {
@@ -30,7 +28,8 @@
                                 "status": "include",
                                 "value": "united states"
                             }
-                        ]
+                        ],
+                        "job_start_date": 12
                     },
                     "creditsCharged": 0
                 }

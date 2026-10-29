@@ -21,7 +21,7 @@ const run = async (fixture: string, queryParams: Record<string, Json>) =>
     });
 
 Deno.test("fuse#companies/filter-options: one filter answers free, without the autocomplete pointer", async () => {
-    const result = await run("synthetic-companies-filter-options.json", {
+    const result = await run("companies-filter-options.json", {
         field: "investors",
     });
     assertEquals(result.httpStatus, 200);
@@ -46,7 +46,7 @@ Deno.test("fuse#companies/filter-options: a refusal is zero-billed data", async 
 Deno.test("fuse#companies/filter-options: the gate rejects a people field, and passes a company one", async () => {
     const unit = await testSealedUnit(ID);
     const fixture = await loadFixture(
-        `${chains}synthetic-companies-filter-options.json`,
+        `${chains}companies-filter-options.json`,
     );
     await assertRejects(
         () =>

@@ -21,9 +21,10 @@ const run = async (fixture: string, body: Json) =>
         fixture: await loadFixture(`${chains}${fixture}`),
     });
 
-Deno.test("fuse#data/emails/verify: a valid verdict settles the 1 on its receipt", async () => {
-    const result = await run("synthetic-email-verify-valid.json", {
-        email: "ada@northwind-payments.example",
+Deno.test("fuse#data/emails/verify: a charged verdict settles the 1 on its receipt", async () => {
+    // Recorded for nobody@example.com; the recorder scrubs every address.
+    const result = await run("email-verify-invalid.json", {
+        email: "user@example.com",
     });
     assertEquals(result.httpStatus, 200);
     assertEquals(result.isProviderError, false);
@@ -32,8 +33,8 @@ Deno.test("fuse#data/emails/verify: a valid verdict settles the 1 on its receipt
         evidence: { CREDIT: 1 },
     });
     assertEquals(result.output, {
-        email: "ada@northwind-payments.example",
-        status: "valid",
+        email: "user@example.com",
+        status: "invalid",
     });
 });
 
@@ -66,7 +67,7 @@ Deno.test("fuse#data/emails/verify estimate: one verdict, at the plan's email_ve
 Deno.test("fuse#data/emails/verify: the gate rejects an empty address, and passes a real one", async () => {
     const unit = await testSealedUnit(ID);
     const fixture = await loadFixture(
-        `${chains}synthetic-email-verify-valid.json`,
+        `${chains}email-verify-invalid.json`,
     );
     await assertRejects(
         () =>

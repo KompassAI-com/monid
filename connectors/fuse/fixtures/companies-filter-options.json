@@ -1,6 +1,6 @@
 {
-    "name": "synthetic-companies-filter-options",
-    "description": "One company filter, `?field=investors`: values come from a typeahead, so Fuse sends an `autocomplete` pointer this catalog does not carry, which the endpoint drops. Synthetic, shaped on Fuse's published Business API contract (2026-10-29).",
+    "name": "companies-filter-options",
+    "description": "One company filter (`investors`): no values, and the `autocomplete` pointer the connector drops. Recorded from Fuse's production API on 2026-10-30, trimmed and scrubbed by the recorder.",
     "calls": [
         {
             "req": {

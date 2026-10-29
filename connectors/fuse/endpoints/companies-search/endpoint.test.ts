@@ -23,8 +23,9 @@ const run = async (fixture: string, body: Json) =>
     });
 
 Deno.test("fuse#companies/search: a page bills the rows it returned, without `isSaved`", async () => {
-    const result = await run("synthetic-companies-search.json", {
+    const result = await run("companies-search.json", {
         query: QUERY,
+        size: 2,
     });
     assertEquals(result.httpStatus, 200);
     assertEquals(result.isProviderError, false);
@@ -36,8 +37,8 @@ Deno.test("fuse#companies/search: a page bills the rows it returned, without `is
     const companies = output.companies as Record<string, unknown>[];
     assertEquals(companies.length, 2);
     assertEquals(companies.some((company) => "isSaved" in company), false);
-    assertEquals(output.nextCursor, "c_synthetic_page_2");
-    assertEquals(output.total, 1287);
+    assertEquals(output.nextCursor, "c_recorded_page_2");
+    assertEquals(output.total, 50);
 });
 
 Deno.test("fuse#companies/search: a refusal is zero-billed data", async () => {
@@ -63,7 +64,7 @@ Deno.test("fuse#companies/search estimate: the page size, 25 unless asked", asyn
 Deno.test("fuse#companies/search: the gate rejects two sources and a saved search, and passes filters alone", async () => {
     const unit = await testSealedUnit(ID);
     const fixture = await loadFixture(
-        `${chains}synthetic-companies-search.json`,
+        `${chains}companies-search.json`,
     );
     const filters = { domains: ["northwind-payments.example"] };
     const refused: Json[] = [

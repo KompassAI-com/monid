@@ -17,6 +17,13 @@ const FILTERS = {
     location_country: [{ status: "include", value: "united states" }],
 };
 const QUERY = "VPs of sales in the United States who joined in the last year";
+/** The filters Fuse built from QUERY when the chains were recorded (2026-10-30). */
+const RECORDED_FILTERS = {
+    keywords: ["vice president of sales", "vp of sales"],
+    job_title_role: [{ status: "include", value: "sales" }],
+    location_country: [{ status: "include", value: "united states" }],
+    job_start_date: 12,
+};
 
 const run = async (fixture: string, body: Json) =>
     runEndpoint({
@@ -27,32 +34,32 @@ const run = async (fixture: string, body: Json) =>
     });
 
 Deno.test("fuse#data/people/count: a count Fuse already holds answers on the first call, free", async () => {
-    const result = await run("synthetic-people-count-ready.json", {
-        filters: FILTERS,
+    const result = await run("people-count-ready.json", {
+        filters: RECORDED_FILTERS,
     });
     assertEquals(result.httpStatus, 200);
     assertEquals(result.isProviderError, false);
     assertEquals(result.usage, { credits: {}, evidence: {} });
     assertEquals(result.output, {
         status: "ready",
-        total: 18432,
-        filters: FILTERS,
+        total: 8983,
+        filters: RECORDED_FILTERS,
     });
 });
 
 Deno.test("fuse#data/people/count: a new count is repeated with its filters until ready, keeping the query's echoes", async () => {
     // Two 202s, then 200: the repeats send the returned `filters`, whose
     // answers carry no `unresolvedCriteria` — the first answer's survive.
-    const result = await run("synthetic-people-count-pending.json", {
+    const result = await run("people-count-pending.json", {
         query: QUERY,
     });
     assertEquals(result.httpStatus, 200);
     assertEquals(result.usage, { credits: {}, evidence: {} });
     assertEquals(result.output, {
         status: "ready",
-        total: 18432,
-        filters: FILTERS,
-        unresolvedCriteria: ["who joined in the last year"],
+        total: 11090,
+        filters: RECORDED_FILTERS,
+        unresolvedCriteria: [],
         closestCompanyMatches: [],
     });
 });
@@ -88,7 +95,7 @@ Deno.test("fuse#data/people/count: a refused start is zero-billed data", async (
 Deno.test("fuse#data/people/count: the gate rejects both sources at once, and passes one", async () => {
     const unit = await testSealedUnit(ID);
     const fixture = await loadFixture(
-        `${chains}synthetic-people-count-ready.json`,
+        `${chains}people-count-ready.json`,
     );
     const refused: Json[] = [{ filters: FILTERS, query: QUERY }, {}];
     for (const body of refused) {

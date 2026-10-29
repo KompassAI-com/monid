@@ -43,8 +43,10 @@
       estimate where billed) and a gated live test per endpoint
 - [x] 4.3 Provider test: the id set, the shared hooks, and the wire (raw
       `Basic` key, idempotency key, the job read url)
-- [ ] 4.4 Record real chains and run `deno task test:live` once the
-      platform's key is issued
+- [x] 4.4 Record real chains and run `deno task test:live` once the
+      platform's key is issued: the 13 normal answers recorded with
+      `deno task record` and hand-minimized (people replaced with the
+      placeholder personas), and the 11 live tests green against prod
 
 ## 5. Verification
 

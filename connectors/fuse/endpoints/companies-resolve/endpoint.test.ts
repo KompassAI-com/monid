@@ -21,8 +21,8 @@ const run = async (fixture: string, body: Json) =>
     });
 
 Deno.test("fuse#data/companies/resolve: a domain resolves to the company, free", async () => {
-    const result = await run("synthetic-companies-resolve-found.json", {
-        domain: "northwind-payments.example",
+    const result = await run("companies-resolve-found.json", {
+        domain: "stripe.com",
     });
     assertEquals(result.httpStatus, 200);
     assertEquals(result.isProviderError, false);
@@ -30,17 +30,18 @@ Deno.test("fuse#data/companies/resolve: a domain resolves to the company, free",
     assertEquals(result.output, {
         status: "found",
         company: {
-            name: "Northwind Payments",
-            domain: "northwind-payments.example",
-            linkedinUrl: "linkedin.com/company/northwind-payments",
-            logoUrl: "https://logos.northwind-payments.example/mark.png",
+            name: "Stripe",
+            domain: "stripe.com",
+            linkedinUrl: "linkedin.com/company/stripe",
+            logoUrl:
+                "https://img.imagecdn.dev/company-logo/at_82700c1a09d149ef87c707c065d73317.jpeg",
         },
     });
 });
 
 Deno.test("fuse#data/companies/resolve: nothing matching is a 200 not_found, never a guess", async () => {
-    const result = await run("synthetic-companies-resolve-not-found.json", {
-        name: "Northwind Paymnts",
+    const result = await run("companies-resolve-not-found.json", {
+        domain: "fuse-connector-fixture-0f3a9c.com",
     });
     assertEquals(result.httpStatus, 200);
     assertEquals(result.output, { status: "not_found", company: null });
@@ -58,7 +59,7 @@ Deno.test("fuse#data/companies/resolve: a refusal is zero-billed data", async ()
 Deno.test("fuse#data/companies/resolve: the gate rejects no identifier, and passes a LinkedIn page alone", async () => {
     const unit = await testSealedUnit(ID);
     const fixture = await loadFixture(
-        `${chains}synthetic-companies-resolve-found.json`,
+        `${chains}companies-resolve-found.json`,
     );
     const refused: Json[] = [{}, { website: "northwind-payments.example" }];
     for (const body of refused) {

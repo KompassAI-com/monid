@@ -25,7 +25,7 @@ const fieldOf = (output: Json, field: string) =>
         .filterOptions.fields[field]) as Record<string, unknown>;
 
 Deno.test("fuse#prospects/filter-options: one filter's vocabulary, free", async () => {
-    const result = await run("synthetic-prospects-filter-options.json", {
+    const result = await run("prospects-filter-options.json", {
         field: "job_title_levels",
     });
     assertEquals(result.httpStatus, 200);
@@ -33,12 +33,12 @@ Deno.test("fuse#prospects/filter-options: one filter's vocabulary, free", async 
     assertEquals(result.usage, { credits: {}, evidence: {} });
     const levels = fieldOf(result.output, "job_title_levels");
     assertEquals(levels.valueShape, "include_exclude");
-    assertEquals((levels.values as unknown[]).length, 3);
+    assertEquals((levels.values as unknown[]).length, 2);
 });
 
 Deno.test("fuse#prospects/filter-options: a free-text field loses the autocomplete pointer", async () => {
     const result = await run(
-        "synthetic-prospects-filter-options-free-text.json",
+        "prospects-filter-options-free-text.json",
         { field: "job_title" },
     );
     const title = fieldOf(result.output, "job_title");
@@ -55,7 +55,7 @@ Deno.test("fuse#prospects/filter-options: a refusal is zero-billed data", async 
 Deno.test("fuse#prospects/filter-options: the gate rejects a misspelled field, and passes a listed one", async () => {
     const unit = await testSealedUnit(ID);
     const fixture = await loadFixture(
-        `${chains}synthetic-prospects-filter-options.json`,
+        `${chains}prospects-filter-options.json`,
     );
     const refused: Record<string, Json>[] = [
         { field: "job_titles" },

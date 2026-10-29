@@ -41,7 +41,7 @@ Deno.test("fuse#data/people/email: a found email settles the 5 on its receipt", 
 });
 
 Deno.test("fuse#data/people/email: a miss answers 200 and settles ZERO", async () => {
-    const result = await run("synthetic-person-email-not-found.json", ADA);
+    const result = await run("person-email-not-found.json", ADA);
     assertEquals(result.httpStatus, 200);
     assertEquals(result.usage, { credits: {}, evidence: { CREDIT: 0 } });
     assertEquals((result.output as Record<string, unknown>).email, null);
@@ -72,7 +72,7 @@ Deno.test("fuse#data/people/email estimate: one email found, at the plan's peopl
 Deno.test("fuse#data/people/email: the gate rejects a name alone, and passes a name with a domain", async () => {
     const unit = await testSealedUnit(ID);
     const fixture = await loadFixture(
-        `${chains}synthetic-person-email-not-found.json`,
+        `${chains}person-email-not-found.json`,
     );
     await assertRejects(
         () =>

@@ -1,6 +1,6 @@
 {
-    "name": "synthetic-people-count-pending",
-    "description": "A new query count: 202 pending with the filters being counted and the query's own echoes, one more 202, then 200 ready. The repeats send the returned filters, and their answers carry no echoes. Synthetic, shaped on Fuse's published Business API contract (2026-10-29).",
+    "name": "people-count-pending",
+    "description": "A new people count from a sentence: two 202 pending answers, then 200 ready on the repeat with the counted filters. Recorded from Fuse's production API on 2026-10-30, trimmed and scrubbed by the recorder.",
     "calls": [
         {
             "req": {
@@ -13,11 +13,9 @@
                     "status": "pending",
                     "total": null,
                     "filters": {
-                        "job_title_levels": [
-                            {
-                                "status": "include",
-                                "value": "vp"
-                            }
+                        "keywords": [
+                            "vice president of sales",
+                            "vp of sales"
                         ],
                         "job_title_role": [
                             {
@@ -30,11 +28,10 @@
                                 "status": "include",
                                 "value": "united states"
                             }
-                        ]
+                        ],
+                        "job_start_date": 12
                     },
-                    "unresolvedCriteria": [
-                        "who joined in the last year"
-                    ],
+                    "unresolvedCriteria": [],
                     "closestCompanyMatches": [],
                     "creditsCharged": 0
                 }
@@ -51,11 +48,9 @@
                     "status": "pending",
                     "total": null,
                     "filters": {
-                        "job_title_levels": [
-                            {
-                                "status": "include",
-                                "value": "vp"
-                            }
+                        "keywords": [
+                            "vice president of sales",
+                            "vp of sales"
                         ],
                         "job_title_role": [
                             {
@@ -68,7 +63,8 @@
                                 "status": "include",
                                 "value": "united states"
                             }
-                        ]
+                        ],
+                        "job_start_date": 12
                     },
                     "creditsCharged": 0
                 }
@@ -83,13 +79,11 @@
                 "status": 200,
                 "body": {
                     "status": "ready",
-                    "total": 18432,
+                    "total": 11090,
                     "filters": {
-                        "job_title_levels": [
-                            {
-                                "status": "include",
-                                "value": "vp"
-                            }
+                        "keywords": [
+                            "vice president of sales",
+                            "vp of sales"
                         ],
                         "job_title_role": [
                             {
@@ -102,7 +96,8 @@
                                 "status": "include",
                                 "value": "united states"
                             }
-                        ]
+                        ],
+                        "job_start_date": 12
                     },
                     "creditsCharged": 0
                 }

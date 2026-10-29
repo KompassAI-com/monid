@@ -1,6 +1,6 @@
 {
-    "name": "synthetic-person-email-not-found",
-    "description": "An email lookup that finds nothing: 200 not_found with a zero receipt. Synthetic, shaped on Fuse's published Business API contract (2026-10-29).",
+    "name": "companies-resolve-not-found",
+    "description": "A domain nothing matches: a 200 `not_found` with no company, free. Recorded from Fuse's production API on 2026-10-30, trimmed and scrubbed by the recorder.",
     "calls": [
         {
             "req": {
@@ -11,8 +11,7 @@
                 "status": 200,
                 "body": {
                     "status": "not_found",
-                    "email": null,
-                    "linkedinUrl": null,
+                    "company": null,
                     "creditsCharged": 0
                 }
             }
